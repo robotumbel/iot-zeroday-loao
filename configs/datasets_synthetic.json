@@ -1,0 +1,37 @@
+{
+  "_doc": "Synthetic smoke-test variant of datasets.json (random data, not real traffic).",
+  "nf_ton_iot_v3": {
+    "taxonomy": "ton_iot",
+    "files": [
+      "data/synthetic/NF-ToN-IoT-v3/*.csv"
+    ],
+    "label_column": "Attack",
+    "feature_space": "nf_v3",
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "Label",
+      "Dataset"
+    ]
+  },
+  "nf_bot_iot_v3": {
+    "taxonomy": "bot_iot",
+    "files": [
+      "data/synthetic/NF-BoT-IoT-v3/*.csv"
+    ],
+    "label_column": "Attack",
+    "feature_space": "nf_v3",
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "Label",
+      "Dataset"
+    ]
+  }
+}

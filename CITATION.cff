@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite them as below."
+title: "Zero-day intrusion detection for IoT: leave-one-attack-out evaluation across networks (code and results)"
+authors:
+  - family-names: Kurniabudi
+    affiliation: "Master's Program in Information Systems, Universitas Dinamika Bangsa, Jambi, Indonesia"
+    email: kurniabudi@unama.ac.id
+    orcid: "https://orcid.org/0000-0001-9073-8858"
+  - family-names: Winanto
+    given-names: Eko Arip
+    affiliation: "Department of Computer Engineering, Faculty of Computer Science, Universitas Dinamika Bangsa, Jambi, Indonesia"
+    orcid: "https://orcid.org/0000-0003-3274-1885"
+version: 0.1.0
+date-released: 2026-10-16
+license: MIT
+keywords:
+  - intrusion detection
+  - Internet of Things
+  - zero-day attacks
+  - open-set recognition
+  - language models
+preferred-citation:
+  type: article
+  title: "Fine-Tuned Language Encoders for Zero-Day IoT Intrusion Detection: A Cross-Network Leave-One-Attack-Out Benchmark With Label-Free Calibration"
+  authors:
+    - family-names: Kurniabudi
+    - family-names: Winanto
+      given-names: Eko Arip
+  journal: "IEEE Access"
+  year: 2026
+  status: submitted
