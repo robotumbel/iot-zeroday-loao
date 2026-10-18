@@ -1,0 +1,26 @@
+{
+  "splits": "splits/family_seed1",
+  "only": [
+    "P1__",
+    "P3__"
+  ],
+  "model": "tiny-local",
+  "scheme": "sentence",
+  "max_length": 512,
+  "epochs": 3,
+  "batch_size": 64,
+  "lr": 0.0003,
+  "max_train_per_unit": 2000,
+  "max_test_per_unit": 0,
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0,
+    0.05
+  ],
+  "seed": 1,
+  "out": "results/l1_tiny-local_family_seed1.csv"
+}

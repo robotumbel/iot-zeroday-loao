@@ -1,0 +1,61 @@
+{
+  "spec": {
+    "protocol": "P1",
+    "source": "nf_ton_iot_v3",
+    "target": "nf_ton_iot_v3",
+    "level": "family",
+    "holdout": "RECON",
+    "seed": 2
+  },
+  "split_id": "P1__nf_ton_iot_v3__to__nf_ton_iot_v3__family=RECON__seed2",
+  "status": "ok",
+  "processed_files": {
+    "nf_ton_iot_v3": "data/processed/nf_ton_iot_v3__cap20000__seed2.parquet"
+  },
+  "processed_sha256": {
+    "nf_ton_iot_v3": "ce773e176185ba38e031cc2bcfc0fbc629566418a57d78552c594febe8de8d63"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [],
+    "n_train": 51532,
+    "n_val": 17178,
+    "n_test": 18942,
+    "n_target_pool": 18944,
+    "n_test_unknown": 1766,
+    "train_units": {
+      "WEB": 19012,
+      "FLOOD": 10254,
+      "BRUTEFORCE": 7568,
+      "BENIGN": 6843,
+      "BACKDOOR": 3242,
+      "MITM_SPOOF": 2917,
+      "RANSOMWARE": 1696
+    },
+    "test_units": {
+      "WEB": 6337,
+      "FLOOD": 3418,
+      "BRUTEFORCE": 2522,
+      "BENIGN": 2281,
+      "RECON": 1766,
+      "BACKDOOR": 1081,
+      "MITM_SPOOF": 972,
+      "RANSOMWARE": 565
+    },
+    "known_units": [
+      "BACKDOOR",
+      "BRUTEFORCE",
+      "FLOOD",
+      "MITM_SPOOF",
+      "RANSOMWARE",
+      "WEB"
+    ],
+    "pseudo_unknown_units": [
+      "BACKDOOR",
+      "BRUTEFORCE",
+      "FLOOD",
+      "MITM_SPOOF",
+      "RANSOMWARE",
+      "WEB"
+    ]
+  }
+}

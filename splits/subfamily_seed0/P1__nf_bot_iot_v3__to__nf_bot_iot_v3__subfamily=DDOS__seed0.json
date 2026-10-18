@@ -1,0 +1,48 @@
+{
+  "spec": {
+    "protocol": "P1",
+    "source": "nf_bot_iot_v3",
+    "target": "nf_bot_iot_v3",
+    "level": "subfamily",
+    "holdout": "DDOS",
+    "seed": 0
+  },
+  "split_id": "P1__nf_bot_iot_v3__to__nf_bot_iot_v3__subfamily=DDOS__seed0",
+  "status": "ok",
+  "processed_files": {
+    "nf_bot_iot_v3": "data/processed/nf_bot_iot_v3__cap20000__seed0.parquet"
+  },
+  "processed_sha256": {
+    "nf_bot_iot_v3": "0df92aa05f479a747bc7cd02a9ff3f37855502d03d3b44de741abf2a3f678c40"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [],
+    "n_train": 26317,
+    "n_val": 8773,
+    "n_test": 12357,
+    "n_test_unknown": 3586,
+    "train_units": {
+      "DOS": 10811,
+      "SCAN": 9022,
+      "BENIGN": 6215,
+      "THEFT": 269
+    },
+    "test_units": {
+      "DOS": 3604,
+      "DDOS": 3586,
+      "SCAN": 3007,
+      "BENIGN": 2071,
+      "THEFT": 89
+    },
+    "known_units": [
+      "DOS",
+      "SCAN",
+      "THEFT"
+    ],
+    "pseudo_unknown_units": [
+      "DOS",
+      "SCAN",
+      "THEFT"
+    ]
+  }
+}

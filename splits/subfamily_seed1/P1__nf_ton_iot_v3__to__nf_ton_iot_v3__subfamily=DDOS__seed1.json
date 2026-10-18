@@ -1,0 +1,69 @@
+{
+  "spec": {
+    "protocol": "P1",
+    "source": "nf_ton_iot_v3",
+    "target": "nf_ton_iot_v3",
+    "level": "subfamily",
+    "holdout": "DDOS",
+    "seed": 1
+  },
+  "split_id": "P1__nf_ton_iot_v3__to__nf_ton_iot_v3__subfamily=DDOS__seed1",
+  "status": "ok",
+  "processed_files": {
+    "nf_ton_iot_v3": "data/processed/nf_ton_iot_v3__cap20000__seed1.parquet"
+  },
+  "processed_sha256": {
+    "nf_ton_iot_v3": "b27a28b949426d09a5b6d744fc4b141b67de1e4e6e65bb4ba7491d24f7c4192d"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [],
+    "n_train": 54890,
+    "n_val": 18297,
+    "n_test": 18900,
+    "n_target_pool": 18902,
+    "n_test_unknown": 605,
+    "train_units": {
+      "INJECTION": 10990,
+      "DOS": 8336,
+      "XSS": 8060,
+      "PASSWORD": 7516,
+      "BENIGN": 6766,
+      "SCAN": 5297,
+      "BACKDOOR": 3312,
+      "MITM": 2918,
+      "RANSOMWARE": 1695
+    },
+    "test_units": {
+      "INJECTION": 3663,
+      "DOS": 2778,
+      "XSS": 2687,
+      "PASSWORD": 2506,
+      "BENIGN": 2255,
+      "SCAN": 1765,
+      "BACKDOOR": 1104,
+      "MITM": 972,
+      "DDOS": 605,
+      "RANSOMWARE": 565
+    },
+    "known_units": [
+      "BACKDOOR",
+      "DOS",
+      "INJECTION",
+      "MITM",
+      "PASSWORD",
+      "RANSOMWARE",
+      "SCAN",
+      "XSS"
+    ],
+    "pseudo_unknown_units": [
+      "BACKDOOR",
+      "DOS",
+      "INJECTION",
+      "MITM",
+      "PASSWORD",
+      "RANSOMWARE",
+      "SCAN",
+      "XSS"
+    ]
+  }
+}

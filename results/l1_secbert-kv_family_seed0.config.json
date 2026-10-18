@@ -1,0 +1,26 @@
+{
+  "splits": "splits/family_seed0",
+  "only": [
+    "P1__",
+    "P3__"
+  ],
+  "model": "secbert",
+  "scheme": "kv",
+  "max_length": 512,
+  "epochs": 2,
+  "batch_size": 32,
+  "lr": 5e-05,
+  "max_train_per_unit": 2000,
+  "max_test_per_unit": 0,
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0,
+    0.05
+  ],
+  "seed": 0,
+  "out": "results/l1_secbert-kv_family_seed0.csv"
+}

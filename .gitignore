@@ -1,0 +1,10 @@
+data/raw/
+data/interim/
+data/processed/
+data/synthetic/
+results/scores/
+*.zip
+*.log
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,23 @@
+{
+  "splits": "splits/family_seed2",
+  "only": [
+    "P1__",
+    "P3__"
+  ],
+  "detectors": [
+    "iforest",
+    "ae",
+    "lightgbm"
+  ],
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0,
+    0.05
+  ],
+  "seed": 2,
+  "out": "results/anomaly_family_seed2.csv"
+}
