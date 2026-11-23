@@ -1,0 +1,51 @@
+{
+  "spec": {
+    "protocol": "P3",
+    "source": "nf_bot_iot_v3",
+    "target": "nf_cicids2018_v3",
+    "level": "family",
+    "holdout": "FLOOD",
+    "seed": 2
+  },
+  "split_id": "P3__nf_bot_iot_v3__to__nf_cicids2018_v3__family=FLOOD__seed2",
+  "status": "ok",
+  "processed_files": {
+    "nf_bot_iot_v3": "data/processed/nf_bot_iot_v3__cap20000__seed2.parquet",
+    "nf_cicids2018_v3": "data/processed/nf_cicids2018_v3__cap20000__seed2.parquet"
+  },
+  "processed_sha256": {
+    "nf_bot_iot_v3": "4545fce26a214197f1d1fb7423f754de076e44479b5ce2240dbe38050163781c",
+    "nf_cicids2018_v3": "9f3985f27fd1e3031fe304a5d4c8e56fabf273769a812b9522a0cd26e1124611"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [
+      "BOTNET",
+      "BRUTEFORCE",
+      "INFILTRATION",
+      "WEB"
+    ],
+    "removed_test_rows_identical_to_source_train": 0,
+    "n_train": 15461,
+    "n_val": 5154,
+    "n_test": 17492,
+    "n_target_pool": 17493,
+    "n_test_unknown": 14555,
+    "train_units": {
+      "RECON": 8986,
+      "BENIGN": 6206,
+      "THEFT": 269
+    },
+    "test_units": {
+      "FLOOD": 14555,
+      "BENIGN": 2937
+    },
+    "known_units": [
+      "RECON",
+      "THEFT"
+    ],
+    "pseudo_unknown_units": [
+      "RECON",
+      "THEFT"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "spec": {
+    "protocol": "P1",
+    "source": "nf_cicids2018_v3",
+    "target": "nf_cicids2018_v3",
+    "level": "family",
+    "holdout": "INFILTRATION",
+    "seed": 1
+  },
+  "split_id": "P1__nf_cicids2018_v3__to__nf_cicids2018_v3__family=INFILTRATION__seed1",
+  "status": "ok",
+  "processed_files": {
+    "nf_cicids2018_v3": "data/processed/nf_cicids2018_v3__cap20000__seed1.parquet"
+  },
+  "processed_sha256": {
+    "nf_cicids2018_v3": "fe2dcaed81ccc618c7f52ed9020f76bb895e741eadde19fb5cd4d7ab430c76e2"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [],
+    "n_train": 64779,
+    "n_val": 21592,
+    "n_test": 23546,
+    "n_target_pool": 23545,
+    "n_test_unknown": 1953,
+    "train_units": {
+      "FLOOD": 43486,
+      "BRUTEFORCE": 11374,
+      "BENIGN": 8770,
+      "WEB": 660,
+      "BOTNET": 489
+    },
+    "test_units": {
+      "FLOOD": 14496,
+      "BRUTEFORCE": 3791,
+      "BENIGN": 2923,
+      "INFILTRATION": 1953,
+      "WEB": 220,
+      "BOTNET": 163
+    },
+    "known_units": [
+      "BOTNET",
+      "BRUTEFORCE",
+      "FLOOD",
+      "WEB"
+    ],
+    "pseudo_unknown_units": [
+      "BOTNET",
+      "BRUTEFORCE",
+      "FLOOD",
+      "WEB"
+    ]
+  }
+}

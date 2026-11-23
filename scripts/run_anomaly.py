@@ -98,7 +98,12 @@ def run(manifest: Path, a) -> list[dict]:
             prep = None
             m = lgb.LGBMClassifier(n_estimators=200, class_weight="balanced", random_state=a.seed, verbose=-1)
             m.fit(X(split.train), split.train[u].to_numpy())
-            score_fn = lambda d: 1.0 - m.predict_proba(X(d)).max(1)  # noqa: E731
+            if det == "lightgbm_energy":
+                # Energy over the raw multiclass margins (log-odds), the tree analogue of the logit energy.
+                from scipy.special import logsumexp
+                score_fn = lambda d: -logsumexp(m.predict(X(d), raw_score=True), axis=1)  # noqa: E731
+            else:
+                score_fn = lambda d: 1.0 - m.predict_proba(X(d)).max(1)  # noqa: E731
             closed = m.classes_[m.predict_proba(X(test)).argmax(1)]
         train_s = time.time() - t0
         t1 = time.time()

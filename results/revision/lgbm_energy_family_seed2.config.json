@@ -1,0 +1,20 @@
+{
+  "splits": "splits/family_seed2",
+  "only": [
+    "P1__",
+    "P3__"
+  ],
+  "detectors": [
+    "lightgbm_energy"
+  ],
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0
+  ],
+  "seed": 2,
+  "out": "results/revision/lgbm_energy_family_seed2.csv"
+}

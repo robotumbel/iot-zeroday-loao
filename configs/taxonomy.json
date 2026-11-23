@@ -1,80 +1,410 @@
 {
   "_doc": "Harmonized attack taxonomy. Keys are normalized raw labels (lowercase, only a-z0-9). Value = [family, subfamily]. LOAO can hold out at 'family' level (far-OOD) or 'subfamily' level (near-OOD). Any raw label not listed here raises an error: no silent defaults.",
-  "families": ["BENIGN", "FLOOD", "RECON", "BRUTEFORCE", "WEB", "BACKDOOR", "MITM_SPOOF", "RANSOMWARE", "THEFT"],
+  "families": [
+    "BENIGN",
+    "FLOOD",
+    "RECON",
+    "BRUTEFORCE",
+    "WEB",
+    "BACKDOOR",
+    "MITM_SPOOF",
+    "RANSOMWARE",
+    "THEFT",
+    "EXPLOIT",
+    "FUZZING",
+    "GENERIC",
+    "WORM",
+    "BOTNET",
+    "INFILTRATION"
+  ],
   "datasets": {
     "ciciot2023": {
-      "benigntraffic": ["BENIGN", "BENIGN"],
-      "ddosrstfinflood": ["FLOOD", "DDOS"],
-      "ddosicmpflood": ["FLOOD", "DDOS"],
-      "ddossynonymousipflood": ["FLOOD", "DDOS"],
-      "ddossynflood": ["FLOOD", "DDOS"],
-      "ddospshackflood": ["FLOOD", "DDOS"],
-      "ddostcpflood": ["FLOOD", "DDOS"],
-      "ddosudpflood": ["FLOOD", "DDOS"],
-      "ddosicmpfragmentation": ["FLOOD", "DDOS"],
-      "ddosackfragmentation": ["FLOOD", "DDOS"],
-      "ddosudpfragmentation": ["FLOOD", "DDOS"],
-      "ddoshttpflood": ["FLOOD", "DDOS"],
-      "ddosslowloris": ["FLOOD", "DDOS"],
-      "dostcpflood": ["FLOOD", "DOS"],
-      "dosudpflood": ["FLOOD", "DOS"],
-      "dossynflood": ["FLOOD", "DOS"],
-      "doshttpflood": ["FLOOD", "DOS"],
-      "miraigreethflood": ["FLOOD", "BOTNET_FLOOD"],
-      "miraiudpplain": ["FLOOD", "BOTNET_FLOOD"],
-      "miraigreipflood": ["FLOOD", "BOTNET_FLOOD"],
-      "reconhostdiscovery": ["RECON", "SCAN"],
-      "reconosscan": ["RECON", "FINGERPRINT"],
-      "reconportscan": ["RECON", "SCAN"],
-      "reconpingsweep": ["RECON", "SCAN"],
-      "vulnerabilityscan": ["RECON", "VULN_SCAN"],
-      "mitmarpspoofing": ["MITM_SPOOF", "MITM"],
-      "dnsspoofing": ["MITM_SPOOF", "SPOOFING"],
-      "dictionarybruteforce": ["BRUTEFORCE", "PASSWORD"],
-      "commandinjection": ["WEB", "INJECTION"],
-      "sqlinjection": ["WEB", "INJECTION"],
-      "xss": ["WEB", "XSS"],
-      "uploadingattack": ["WEB", "UPLOAD"],
-      "browserhijacking": ["WEB", "HIJACK"],
-      "backdoormalware": ["BACKDOOR", "BACKDOOR"]
+      "benigntraffic": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "ddosrstfinflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosicmpflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddossynonymousipflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddossynflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddospshackflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddostcpflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosudpflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosicmpfragmentation": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosackfragmentation": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosudpfragmentation": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddoshttpflood": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosslowloris": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "dostcpflood": [
+        "FLOOD",
+        "DOS"
+      ],
+      "dosudpflood": [
+        "FLOOD",
+        "DOS"
+      ],
+      "dossynflood": [
+        "FLOOD",
+        "DOS"
+      ],
+      "doshttpflood": [
+        "FLOOD",
+        "DOS"
+      ],
+      "miraigreethflood": [
+        "FLOOD",
+        "BOTNET_FLOOD"
+      ],
+      "miraiudpplain": [
+        "FLOOD",
+        "BOTNET_FLOOD"
+      ],
+      "miraigreipflood": [
+        "FLOOD",
+        "BOTNET_FLOOD"
+      ],
+      "reconhostdiscovery": [
+        "RECON",
+        "SCAN"
+      ],
+      "reconosscan": [
+        "RECON",
+        "FINGERPRINT"
+      ],
+      "reconportscan": [
+        "RECON",
+        "SCAN"
+      ],
+      "reconpingsweep": [
+        "RECON",
+        "SCAN"
+      ],
+      "vulnerabilityscan": [
+        "RECON",
+        "VULN_SCAN"
+      ],
+      "mitmarpspoofing": [
+        "MITM_SPOOF",
+        "MITM"
+      ],
+      "dnsspoofing": [
+        "MITM_SPOOF",
+        "SPOOFING"
+      ],
+      "dictionarybruteforce": [
+        "BRUTEFORCE",
+        "PASSWORD"
+      ],
+      "commandinjection": [
+        "WEB",
+        "INJECTION"
+      ],
+      "sqlinjection": [
+        "WEB",
+        "INJECTION"
+      ],
+      "xss": [
+        "WEB",
+        "XSS"
+      ],
+      "uploadingattack": [
+        "WEB",
+        "UPLOAD"
+      ],
+      "browserhijacking": [
+        "WEB",
+        "HIJACK"
+      ],
+      "backdoormalware": [
+        "BACKDOOR",
+        "BACKDOOR"
+      ]
     },
     "ton_iot": {
-      "benign": ["BENIGN", "BENIGN"],
-      "normal": ["BENIGN", "BENIGN"],
-      "scanning": ["RECON", "SCAN"],
-      "xss": ["WEB", "XSS"],
-      "injection": ["WEB", "INJECTION"],
-      "ddos": ["FLOOD", "DDOS"],
-      "dos": ["FLOOD", "DOS"],
-      "password": ["BRUTEFORCE", "PASSWORD"],
-      "backdoor": ["BACKDOOR", "BACKDOOR"],
-      "ransomware": ["RANSOMWARE", "RANSOMWARE"],
-      "mitm": ["MITM_SPOOF", "MITM"]
+      "benign": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "normal": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "scanning": [
+        "RECON",
+        "SCAN"
+      ],
+      "xss": [
+        "WEB",
+        "XSS"
+      ],
+      "injection": [
+        "WEB",
+        "INJECTION"
+      ],
+      "ddos": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "dos": [
+        "FLOOD",
+        "DOS"
+      ],
+      "password": [
+        "BRUTEFORCE",
+        "PASSWORD"
+      ],
+      "backdoor": [
+        "BACKDOOR",
+        "BACKDOOR"
+      ],
+      "ransomware": [
+        "RANSOMWARE",
+        "RANSOMWARE"
+      ],
+      "mitm": [
+        "MITM_SPOOF",
+        "MITM"
+      ]
     },
     "bot_iot": {
-      "benign": ["BENIGN", "BENIGN"],
-      "normal": ["BENIGN", "BENIGN"],
-      "reconnaissance": ["RECON", "SCAN"],
-      "ddos": ["FLOOD", "DDOS"],
-      "dos": ["FLOOD", "DOS"],
-      "theft": ["THEFT", "THEFT"]
+      "benign": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "normal": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "reconnaissance": [
+        "RECON",
+        "SCAN"
+      ],
+      "ddos": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "dos": [
+        "FLOOD",
+        "DOS"
+      ],
+      "theft": [
+        "THEFT",
+        "THEFT"
+      ]
     },
     "edge_iiotset": {
-      "normal": ["BENIGN", "BENIGN"],
-      "ddosudp": ["FLOOD", "DDOS"],
-      "ddosicmp": ["FLOOD", "DDOS"],
-      "ddostcp": ["FLOOD", "DDOS"],
-      "ddoshttp": ["FLOOD", "DDOS"],
-      "sqlinjection": ["WEB", "INJECTION"],
-      "xss": ["WEB", "XSS"],
-      "uploading": ["WEB", "UPLOAD"],
-      "password": ["BRUTEFORCE", "PASSWORD"],
-      "vulnerabilityscanner": ["RECON", "VULN_SCAN"],
-      "portscanning": ["RECON", "SCAN"],
-      "fingerprinting": ["RECON", "FINGERPRINT"],
-      "backdoor": ["BACKDOOR", "BACKDOOR"],
-      "ransomware": ["RANSOMWARE", "RANSOMWARE"],
-      "mitm": ["MITM_SPOOF", "MITM"]
+      "normal": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "ddosudp": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosicmp": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddostcp": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddoshttp": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "sqlinjection": [
+        "WEB",
+        "INJECTION"
+      ],
+      "xss": [
+        "WEB",
+        "XSS"
+      ],
+      "uploading": [
+        "WEB",
+        "UPLOAD"
+      ],
+      "password": [
+        "BRUTEFORCE",
+        "PASSWORD"
+      ],
+      "vulnerabilityscanner": [
+        "RECON",
+        "VULN_SCAN"
+      ],
+      "portscanning": [
+        "RECON",
+        "SCAN"
+      ],
+      "fingerprinting": [
+        "RECON",
+        "FINGERPRINT"
+      ],
+      "backdoor": [
+        "BACKDOOR",
+        "BACKDOOR"
+      ],
+      "ransomware": [
+        "RANSOMWARE",
+        "RANSOMWARE"
+      ],
+      "mitm": [
+        "MITM_SPOOF",
+        "MITM"
+      ]
+    },
+    "unsw_nb15": {
+      "benign": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "normal": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "exploits": [
+        "EXPLOIT",
+        "EXPLOIT"
+      ],
+      "shellcode": [
+        "EXPLOIT",
+        "SHELLCODE"
+      ],
+      "fuzzers": [
+        "FUZZING",
+        "FUZZING"
+      ],
+      "generic": [
+        "GENERIC",
+        "GENERIC"
+      ],
+      "reconnaissance": [
+        "RECON",
+        "SCAN"
+      ],
+      "analysis": [
+        "RECON",
+        "ANALYSIS"
+      ],
+      "dos": [
+        "FLOOD",
+        "DOS"
+      ],
+      "backdoor": [
+        "BACKDOOR",
+        "BACKDOOR"
+      ],
+      "backdoors": [
+        "BACKDOOR",
+        "BACKDOOR"
+      ],
+      "worms": [
+        "WORM",
+        "WORM"
+      ]
+    },
+    "cicids2018": {
+      "benign": [
+        "BENIGN",
+        "BENIGN"
+      ],
+      "ddosattackhoic": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosattacksloichttp": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "ddosattackloicudp": [
+        "FLOOD",
+        "DDOS"
+      ],
+      "dosattackshulk": [
+        "FLOOD",
+        "DOS"
+      ],
+      "dosattacksgoldeneye": [
+        "FLOOD",
+        "DOS"
+      ],
+      "dosattacksslowloris": [
+        "FLOOD",
+        "DOS"
+      ],
+      "dosattacksslowhttptest": [
+        "FLOOD",
+        "DOS"
+      ],
+      "ftpbruteforce": [
+        "BRUTEFORCE",
+        "PASSWORD"
+      ],
+      "sshbruteforce": [
+        "BRUTEFORCE",
+        "PASSWORD"
+      ],
+      "bruteforceweb": [
+        "WEB",
+        "WEB_BRUTEFORCE"
+      ],
+      "bruteforcexss": [
+        "WEB",
+        "XSS"
+      ],
+      "sqlinjection": [
+        "WEB",
+        "INJECTION"
+      ],
+      "bot": [
+        "BOTNET",
+        "BOTNET"
+      ],
+      "infilteration": [
+        "INFILTRATION",
+        "INFILTRATION"
+      ],
+      "infiltration": [
+        "INFILTRATION",
+        "INFILTRATION"
+      ]
     }
   }
 }

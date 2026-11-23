@@ -1,0 +1,64 @@
+{
+  "spec": {
+    "protocol": "P3",
+    "source": "nf_unsw_nb15_v3",
+    "target": "nf_ton_iot_v3",
+    "level": "family",
+    "holdout": "RECON",
+    "seed": 1
+  },
+  "split_id": "P3__nf_unsw_nb15_v3__to__nf_ton_iot_v3__family=RECON__seed1",
+  "status": "ok",
+  "processed_files": {
+    "nf_unsw_nb15_v3": "data/processed/nf_unsw_nb15_v3__cap20000__seed1.parquet",
+    "nf_ton_iot_v3": "data/processed/nf_ton_iot_v3__cap20000__seed1.parquet"
+  },
+  "processed_sha256": {
+    "nf_unsw_nb15_v3": "034132f5b74b47c8fb7ac398305d5ca4ccb9147d3e0c943aae659d35e5d5698a",
+    "nf_ton_iot_v3": "b27a28b949426d09a5b6d744fc4b141b67de1e4e6e65bb4ba7491d24f7c4192d"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [
+      "BRUTEFORCE",
+      "MITM_SPOOF",
+      "RANSOMWARE",
+      "WEB"
+    ],
+    "removed_test_rows_identical_to_source_train": 0,
+    "n_train": 39147,
+    "n_val": 13049,
+    "n_test": 8507,
+    "n_target_pool": 8509,
+    "n_test_unknown": 1765,
+    "train_units": {
+      "EXPLOIT": 12583,
+      "FUZZING": 9416,
+      "BENIGN": 8544,
+      "GENERIC": 3257,
+      "FLOOD": 3157,
+      "BACKDOOR": 2104,
+      "WORM": 86
+    },
+    "test_units": {
+      "FLOOD": 3383,
+      "BENIGN": 2255,
+      "RECON": 1765,
+      "BACKDOOR": 1104
+    },
+    "known_units": [
+      "BACKDOOR",
+      "EXPLOIT",
+      "FLOOD",
+      "FUZZING",
+      "GENERIC",
+      "WORM"
+    ],
+    "pseudo_unknown_units": [
+      "BACKDOOR",
+      "EXPLOIT",
+      "FLOOD",
+      "FUZZING",
+      "GENERIC"
+    ]
+  }
+}

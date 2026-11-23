@@ -73,17 +73,18 @@ def temporal_restrict(split, cut_quantile: float = 0.3):
 
 def run(manifest: Path, rules: list[str], fars: list[float], norms: list[str],
         warmup_sizes: list[int], contaminations: list[float], seed: int, max_train_per_unit: int = 0,
-        discretize: int = 0, attack_sources: tuple[str, ...] = ("all",), temporal: bool = False) -> list[dict]:
+        discretize: int = 0, attack_sources: tuple[str, ...] = ("all",), temporal: bool = False,
+        nan_token: bool = False) -> list[dict]:
     split = load_split(manifest)
     split.manifest_path = manifest
     u = split.unit_col
     split.train = cap_per_unit(split.train, u, max_train_per_unit, seed)
-    extra = {"discretize": discretize, "temporal": temporal}
+    extra = {"discretize": discretize, "temporal": temporal, "nan_token": nan_token}
     if temporal:
         extra["temporal_cut_ms"] = temporal_restrict(split)
     if discretize:
         feats = [c for c in feature_columns(split.train) if pd.api.types.is_numeric_dtype(split.train[c])]
-        disc = Discretizer(discretize).fit(split.train[feats])
+        disc = Discretizer(discretize, nan_token=nan_token).fit(split.train[feats])
         for name in ("train", "val", "test", "target_pool"):
             df = getattr(split, name).copy()
             df[feats] = disc.transform(df[feats])
@@ -160,6 +161,7 @@ def main() -> None:
     ap.add_argument("--attack-source", nargs="+", default=["all"], choices=["all", "known", "holdout"],
                     help="which target attacks may contaminate the warm-up window")
     ap.add_argument("--temporal", action="store_true", help="warm-up from early target traffic, test on later traffic")
+    ap.add_argument("--nan-token", action="store_true", help="with --discretize: missing values get their own bin")
     a = ap.parse_args()
     global N_ESTIMATORS
     N_ESTIMATORS = a.n_estimators
@@ -170,7 +172,7 @@ def main() -> None:
         ids = ids[ids.apply(lambda s: any(o in s for o in a.only))]
     for sid in ids:
         res = run(Path(a.splits) / f"{sid}.json", a.calib, a.far, a.norm, a.warmup_n, a.contamination, a.seed,
-                  a.max_train_per_unit, a.discretize, tuple(a.attack_source), a.temporal)
+                  a.max_train_per_unit, a.discretize, tuple(a.attack_source), a.temporal, a.nan_token)
         rows += res
         for r in res:
             print(f"{sid} [{r['norm']}|c={r['warmup_contamination']:.2f}|{r['calibration']}]: AUROC={r['auroc_ood']:.3f} "

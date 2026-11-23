@@ -50,9 +50,9 @@ def run(manifest: Path, a: argparse.Namespace) -> list[dict]:
     warms = {c: make_warmup(split.target_pool, u, a.warmup_n, c, a.seed) for c in a.contamination}
 
     if a.model == "mlp":
-        method = "MLP" + (f"-bin{a.discretize}" if a.discretize else "")
+        method = "MLP" + (f"-bin{a.discretize}" if a.discretize else "") + ("-nan" if a.nan_token else "")
         if a.discretize:  # same quantile bins the text serialization uses
-            disc = Discretizer(a.discretize).fit(train[feats])
+            disc = Discretizer(a.discretize, nan_token=a.nan_token).fit(train[feats])
 
             def inp(d):
                 d = d.copy()
@@ -63,8 +63,8 @@ def run(manifest: Path, a: argparse.Namespace) -> list[dict]:
         enc = MLPDetector(MLPConfig(epochs=a.epochs, lr=a.lr, seed=a.seed)).fit(inp(train), feats, train[u].to_numpy())
     else:
         # Non-default serializations get their own method name so results and score files stay separate.
-        method = f"L1-{a.model}" + ("" if a.scheme == "sentence" else f"-{a.scheme}")
-        ser = FlowSerializer(a.scheme).fit(train[feats])
+        method = f"L1-{a.model}" + ("" if a.scheme == "sentence" else f"-{a.scheme}") + ("-nan" if a.nan_token else "")
+        ser = FlowSerializer(a.scheme, nan_token=a.nan_token).fit(train[feats])
         inp = lambda d: ser.transform(d[feats])  # noqa: E731
         cfg = EncoderConfig(model=a.model, max_length=a.max_length, epochs=a.epochs, batch_size=a.batch_size,
                             lr=a.lr, seed=a.seed)
@@ -124,6 +124,7 @@ def main() -> None:
     ap.add_argument("--contamination", type=float, nargs="+", default=[0.0, 0.05])
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--discretize", type=int, default=0, help="MLP only: train/test on N-level quantile bins")
+    ap.add_argument("--nan-token", action="store_true", help="write missing values as 'missing' (default: top level)")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
 

@@ -1,0 +1,60 @@
+{
+  "spec": {
+    "protocol": "P1",
+    "source": "nf_unsw_nb15_v3",
+    "target": "nf_unsw_nb15_v3",
+    "level": "family",
+    "holdout": "FUZZING",
+    "seed": 0
+  },
+  "split_id": "P1__nf_unsw_nb15_v3__to__nf_unsw_nb15_v3__family=FUZZING__seed0",
+  "status": "ok",
+  "processed_files": {
+    "nf_unsw_nb15_v3": "data/processed/nf_unsw_nb15_v3__cap20000__seed0.parquet"
+  },
+  "processed_sha256": {
+    "nf_unsw_nb15_v3": "71194f602d4b6a5889a1e94e9b46c157a58dfffe87323c931c58b5b737b9d1f7"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [],
+    "n_train": 37311,
+    "n_val": 12436,
+    "n_test": 15574,
+    "n_target_pool": 15572,
+    "n_test_unknown": 3136,
+    "train_units": {
+      "EXPLOIT": 12576,
+      "BENIGN": 8403,
+      "RECON": 7727,
+      "GENERIC": 3256,
+      "FLOOD": 3157,
+      "BACKDOOR": 2106,
+      "WORM": 86
+    },
+    "test_units": {
+      "EXPLOIT": 4192,
+      "FUZZING": 3136,
+      "BENIGN": 2801,
+      "RECON": 2576,
+      "GENERIC": 1085,
+      "FLOOD": 1053,
+      "BACKDOOR": 702,
+      "WORM": 29
+    },
+    "known_units": [
+      "BACKDOOR",
+      "EXPLOIT",
+      "FLOOD",
+      "GENERIC",
+      "RECON",
+      "WORM"
+    ],
+    "pseudo_unknown_units": [
+      "BACKDOOR",
+      "EXPLOIT",
+      "FLOOD",
+      "GENERIC",
+      "RECON"
+    ]
+  }
+}

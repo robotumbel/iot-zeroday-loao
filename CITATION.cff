@@ -10,8 +10,8 @@ authors:
     given-names: Eko Arip
     affiliation: "Department of Computer Engineering, Faculty of Computer Science, Universitas Dinamika Bangsa, Jambi, Indonesia"
     orcid: "https://orcid.org/0000-0003-3274-1885"
-version: 0.1.0
-date-released: 2026-10-16
+version: 0.2.0
+date-released: 2026-11-24
 license: MIT
 repository-code: "https://github.com/robotumbel/iot-zeroday-loao"
 keywords:

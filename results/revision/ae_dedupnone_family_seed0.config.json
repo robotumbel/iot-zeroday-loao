@@ -1,0 +1,20 @@
+{
+  "splits": "splits__dedupnone/family_seed0",
+  "only": [
+    "P1__",
+    "P3__"
+  ],
+  "detectors": [
+    "ae"
+  ],
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0
+  ],
+  "seed": 0,
+  "out": "results/revision/ae_dedupnone_family_seed0.csv"
+}

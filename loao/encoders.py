@@ -83,7 +83,9 @@ class FlowEncoder:
     def _encode(self, texts: list[str]) -> dict:
         return self.tok(texts, truncation=True, max_length=self.cfg.max_length, padding=True, return_tensors="pt")
 
-    def fit(self, texts: list[str], labels: np.ndarray) -> "FlowEncoder":
+    def fit(self, texts: list[str], labels: np.ndarray, snapshots: list | None = None) -> "FlowEncoder":
+        """With `snapshots` (a list), a CPU copy of the weights is appended after every epoch, so
+        each epoch can be evaluated after training without keeping optimizer state on the GPU."""
         cfg = self.cfg
         torch.manual_seed(cfg.seed)
         np.random.seed(cfg.seed)
@@ -127,6 +129,8 @@ class FlowEncoder:
                 scaler.step(opt)
                 scaler.update()
                 sched.step()
+            if snapshots is not None:
+                snapshots.append({k: v.detach().to("cpu", copy=True) for k, v in self.model.state_dict().items()})
         self.train_seconds = time.time() - t0
         # Free optimizer state and gradients before inference: on a 6 GB GPU they push
         # inference batches into shared system memory and slow it down about 7x.
@@ -136,10 +140,20 @@ class FlowEncoder:
             torch.cuda.empty_cache()
 
         # Embedding bank for the kNN and Mahalanobis scores (random subsample of training flows).
-        bank_idx = rng.choice(len(texts), min(cfg.knn_bank_size, len(texts)), replace=False)
-        _, emb = self._forward([texts[i] for i in bank_idx])
-        self.scorer = OpenSetScorer(cfg.knn_k, self.dev).fit(emb, y[bank_idx])
+        self._bank_idx = rng.choice(len(texts), min(cfg.knn_bank_size, len(texts)), replace=False)
+        self._train_texts, self._train_y = texts, y
+        self.refit_scorer()
         return self
+
+    def refit_scorer(self) -> None:
+        """Fit the kNN/Mahalanobis bank on the current weights (used again after loading a snapshot)."""
+        bi = self._bank_idx
+        _, emb = self._forward([self._train_texts[i] for i in bi])
+        self.scorer = OpenSetScorer(self.cfg.knn_k, self.dev).fit(emb, self._train_y[bi])
+
+    def load_snapshot(self, state: dict) -> None:
+        self.model.load_state_dict(state)
+        self.refit_scorer()
 
     @torch.no_grad()
     def _forward(self, texts: list[str], batch_size: int = 64) -> tuple[torch.Tensor, torch.Tensor]:

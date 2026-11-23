@@ -16,7 +16,8 @@ _LEVEL_WORDS = ["very low", "low", "medium", "high", "very high"]
 
 class FlowSerializer:
     def __init__(self, scheme: str = "kv", n_bins: int = 10, decimals: int = 4,
-                 categorical: list[str] | None = None, max_unique_numeric_as_cat: int = 16):
+                 categorical: list[str] | None = None, max_unique_numeric_as_cat: int = 16,
+                 nan_token: bool = False):
         if scheme not in SCHEMES:
             raise ValueError(f"scheme must be one of {SCHEMES}")
         self.scheme = scheme
@@ -24,6 +25,9 @@ class FlowSerializer:
         self.decimals = decimals
         self.categorical = set(categorical or [])
         self.max_unique = max_unique_numeric_as_cat
+        # nan_token=True writes missing numeric values as "missing" instead of the default, which
+        # (through searchsorted) places NaN in the top level ("very high").
+        self.nan_token = nan_token
         self.edges: dict[str, np.ndarray] = {}
         self.columns: list[str] = []
 
@@ -54,8 +58,11 @@ class FlowSerializer:
             if self.scheme == "kv" or c in self.categorical:
                 tok = [self._fmt_raw(v) for v in vals]
             else:
-                b = np.searchsorted(self.edges[c], vals.astype(float), side="right")
+                fv = vals.astype(float)
+                b = np.searchsorted(self.edges[c], fv, side="right")
                 tok = [f"q{i}" for i in b] if self.scheme == "binned" else [_LEVEL_WORDS[min(i, 4)] for i in b]
+                if self.nan_token:
+                    tok = ["missing" if m else t for t, m in zip(tok, np.isnan(fv))]
             if self.scheme == "sentence":
                 name = c.lower().replace("_", " ").replace(".", " ")
                 parts.append([f"{name} is {t}" for t in tok])
@@ -74,8 +81,9 @@ class Discretizer:
     language encoders see.
     """
 
-    def __init__(self, n_bins: int = 5):
+    def __init__(self, n_bins: int = 5, nan_token: bool = False):
         self.ser = FlowSerializer("sentence" if n_bins == len(_LEVEL_WORDS) else "binned", n_bins=n_bins)
+        self.nan_token = nan_token
 
     def fit(self, df: pd.DataFrame) -> "Discretizer":
         self.ser.fit(df)
@@ -88,5 +96,6 @@ class Discretizer:
                 continue
             v = df[c].to_numpy(dtype=float)
             # Same mapping as the text scheme, including NaN (which the text scheme puts in the top bin).
-            out[c] = np.minimum(np.searchsorted(self.ser.edges[c], v, side="right"), self.ser.n_bins - 1).astype(float)
+            b = np.minimum(np.searchsorted(self.ser.edges[c], v, side="right"), self.ser.n_bins - 1).astype(float)
+            out[c] = np.where(np.isnan(v), -1.0, b) if self.nan_token else b
         return out

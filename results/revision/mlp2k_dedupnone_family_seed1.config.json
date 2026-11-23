@@ -1,0 +1,27 @@
+{
+  "splits": "splits__dedupnone/family_seed1",
+  "only": [
+    "P1__",
+    "P3__"
+  ],
+  "model": "mlp",
+  "scheme": "binned",
+  "max_length": 512,
+  "epochs": 30,
+  "batch_size": 32,
+  "lr": 0.001,
+  "max_train_per_unit": 2000,
+  "max_test_per_unit": 0,
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0
+  ],
+  "seed": 1,
+  "discretize": 0,
+  "nan_token": false,
+  "out": "results/revision/mlp2k_dedupnone_family_seed1.csv"
+}

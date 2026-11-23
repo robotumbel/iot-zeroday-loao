@@ -2,30 +2,65 @@
   "_doc": "One entry per dataset. 'files' accepts glob patterns relative to the project root. 'feature_space' must match between source and target for cross-dataset protocols (P2/P3). 'drop_columns' removes identifiers and leakage-prone fields; missing columns are ignored.",
   "nf_ton_iot_v3": {
     "taxonomy": "ton_iot",
-    "files": ["data/raw/NF-ToN-IoT-v3/NF-ToN-IoT-v3.csv"],
+    "files": [
+      "data/raw/NF-ToN-IoT-v3/NF-ToN-IoT-v3.csv"
+    ],
     "label_column": "Attack",
     "feature_space": "nf_v3",
-    "drop_columns": ["IPV4_SRC_ADDR", "IPV4_DST_ADDR", "L4_SRC_PORT", "FLOW_START_MILLISECONDS", "FLOW_END_MILLISECONDS", "DNS_QUERY_ID", "Label", "Dataset"]
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "DNS_QUERY_ID",
+      "Label",
+      "Dataset"
+    ]
   },
   "nf_bot_iot_v3": {
     "taxonomy": "bot_iot",
-    "files": ["data/raw/NF-BoT-IoT-v3/NF-BoT-IoT-v3.csv"],
+    "files": [
+      "data/raw/NF-BoT-IoT-v3/NF-BoT-IoT-v3.csv"
+    ],
     "label_column": "Attack",
     "feature_space": "nf_v3",
-    "drop_columns": ["IPV4_SRC_ADDR", "IPV4_DST_ADDR", "L4_SRC_PORT", "FLOW_START_MILLISECONDS", "FLOW_END_MILLISECONDS", "DNS_QUERY_ID", "Label", "Dataset"]
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "DNS_QUERY_ID",
+      "Label",
+      "Dataset"
+    ]
   },
   "nf_ciciot2023_v3": {
     "_note": "Not distributed by UQ: produce it by running nProbe (NetFlow v3 template) or NFStream on the CICIoT2023 PCAPs, then label flows from the per-attack PCAP folder names.",
     "taxonomy": "ciciot2023",
-    "files": ["data/interim/NF-CICIoT2023-v3/*.csv"],
+    "files": [
+      "data/interim/NF-CICIoT2023-v3/*.csv"
+    ],
     "label_column": "Attack",
     "feature_space": "nf_v3",
-    "drop_columns": ["IPV4_SRC_ADDR", "IPV4_DST_ADDR", "L4_SRC_PORT", "FLOW_START_MILLISECONDS", "FLOW_END_MILLISECONDS", "DNS_QUERY_ID", "Label", "Dataset"]
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "DNS_QUERY_ID",
+      "Label",
+      "Dataset"
+    ]
   },
   "ciciot2023_native": {
     "_note": "Official CSV release (46 packet-window features). Usable for within-dataset P1 only.",
     "taxonomy": "ciciot2023",
-    "files": ["data/raw/CICIoT2023/*.csv"],
+    "files": [
+      "data/raw/CICIoT2023/*.csv"
+    ],
     "label_column": "label",
     "feature_space": "ciciot2023_native",
     "drop_columns": []
@@ -33,9 +68,63 @@
   "edge_iiotset_native": {
     "_note": "Packet-level ML-EdgeIIoT release. Usable for within-dataset P1 only unless re-extracted to NetFlow v3.",
     "taxonomy": "edge_iiotset",
-    "files": ["data/raw/Edge-IIoTset/ML-EdgeIIoT-dataset.csv"],
+    "files": [
+      "data/raw/Edge-IIoTset/ML-EdgeIIoT-dataset.csv"
+    ],
     "label_column": "Attack_type",
     "feature_space": "edge_iiotset_native",
-    "drop_columns": ["frame.time", "ip.src_host", "ip.dst_host", "arp.src.proto_ipv4", "arp.dst.proto_ipv4", "http.file_data", "http.request.full_uri", "icmp.transmit_timestamp", "http.request.uri.query", "tcp.options", "tcp.payload", "tcp.srcport", "udp.port", "mqtt.msg", "Attack_label"]
+    "drop_columns": [
+      "frame.time",
+      "ip.src_host",
+      "ip.dst_host",
+      "arp.src.proto_ipv4",
+      "arp.dst.proto_ipv4",
+      "http.file_data",
+      "http.request.full_uri",
+      "icmp.transmit_timestamp",
+      "http.request.uri.query",
+      "tcp.options",
+      "tcp.payload",
+      "tcp.srcport",
+      "udp.port",
+      "mqtt.msg",
+      "Attack_label"
+    ]
+  },
+  "nf_unsw_nb15_v3": {
+    "taxonomy": "unsw_nb15",
+    "files": [
+      "data/raw/NF-UNSW-NB15-v3/NF-UNSW-NB15-v3.csv"
+    ],
+    "label_column": "Attack",
+    "feature_space": "nf_v3",
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "DNS_QUERY_ID",
+      "Label",
+      "Dataset"
+    ]
+  },
+  "nf_cicids2018_v3": {
+    "taxonomy": "cicids2018",
+    "files": [
+      "data/raw/NF-CICIDS2018-v3/NF-CICIDS2018-v3.csv"
+    ],
+    "label_column": "Attack",
+    "feature_space": "nf_v3",
+    "drop_columns": [
+      "IPV4_SRC_ADDR",
+      "IPV4_DST_ADDR",
+      "L4_SRC_PORT",
+      "FLOW_START_MILLISECONDS",
+      "FLOW_END_MILLISECONDS",
+      "DNS_QUERY_ID",
+      "Label",
+      "Dataset"
+    ]
   }
 }

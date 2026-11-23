@@ -1,0 +1,62 @@
+{
+  "spec": {
+    "protocol": "P3",
+    "source": "nf_unsw_nb15_v3",
+    "target": "nf_cicids2018_v3",
+    "level": "family",
+    "holdout": "FLOOD",
+    "seed": 1
+  },
+  "split_id": "P3__nf_unsw_nb15_v3__to__nf_cicids2018_v3__family=FLOOD__seed1",
+  "status": "ok",
+  "processed_files": {
+    "nf_unsw_nb15_v3": "data/processed/nf_unsw_nb15_v3__cap20000__seed1.parquet",
+    "nf_cicids2018_v3": "data/processed/nf_cicids2018_v3__cap20000__seed1.parquet"
+  },
+  "processed_sha256": {
+    "nf_unsw_nb15_v3": "034132f5b74b47c8fb7ac398305d5ca4ccb9147d3e0c943aae659d35e5d5698a",
+    "nf_cicids2018_v3": "fe2dcaed81ccc618c7f52ed9020f76bb895e741eadde19fb5cd4d7ab430c76e2"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [
+      "BOTNET",
+      "BRUTEFORCE",
+      "INFILTRATION",
+      "WEB"
+    ],
+    "removed_test_rows_identical_to_source_train": 0,
+    "n_train": 43715,
+    "n_val": 14572,
+    "n_test": 17419,
+    "n_target_pool": 17418,
+    "n_test_unknown": 14496,
+    "train_units": {
+      "EXPLOIT": 12583,
+      "FUZZING": 9416,
+      "BENIGN": 8544,
+      "RECON": 7725,
+      "GENERIC": 3257,
+      "BACKDOOR": 2104,
+      "WORM": 86
+    },
+    "test_units": {
+      "FLOOD": 14496,
+      "BENIGN": 2923
+    },
+    "known_units": [
+      "BACKDOOR",
+      "EXPLOIT",
+      "FUZZING",
+      "GENERIC",
+      "RECON",
+      "WORM"
+    ],
+    "pseudo_unknown_units": [
+      "BACKDOOR",
+      "EXPLOIT",
+      "FUZZING",
+      "GENERIC",
+      "RECON"
+    ]
+  }
+}

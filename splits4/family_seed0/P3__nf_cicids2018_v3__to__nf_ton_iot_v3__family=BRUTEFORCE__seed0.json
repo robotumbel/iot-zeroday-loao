@@ -1,0 +1,59 @@
+{
+  "spec": {
+    "protocol": "P3",
+    "source": "nf_cicids2018_v3",
+    "target": "nf_ton_iot_v3",
+    "level": "family",
+    "holdout": "BRUTEFORCE",
+    "seed": 0
+  },
+  "split_id": "P3__nf_cicids2018_v3__to__nf_ton_iot_v3__family=BRUTEFORCE__seed0",
+  "status": "ok",
+  "processed_files": {
+    "nf_cicids2018_v3": "data/processed/nf_cicids2018_v3__cap20000__seed0.parquet",
+    "nf_ton_iot_v3": "data/processed/nf_ton_iot_v3__cap20000__seed0.parquet"
+  },
+  "processed_sha256": {
+    "nf_cicids2018_v3": "ecea00433e4a3e1c9ada44d08077d15b425fed898846c87885717dfef84a277e",
+    "nf_ton_iot_v3": "78eb0888b50a872488042aa20a0bbc088c301fd45069e38b1363793c7c7c9a0e"
+  },
+  "report": {
+    "dropped_target_units_not_in_source": [
+      "BACKDOOR",
+      "MITM_SPOOF",
+      "RANSOMWARE",
+      "RECON"
+    ],
+    "removed_test_rows_identical_to_source_train": 75,
+    "n_train": 59467,
+    "n_val": 19823,
+    "n_test": 14410,
+    "n_target_pool": 14484,
+    "n_test_unknown": 2501,
+    "train_units": {
+      "FLOOD": 43650,
+      "BENIGN": 8761,
+      "INFILTRATION": 5909,
+      "WEB": 662,
+      "BOTNET": 485
+    },
+    "test_units": {
+      "WEB": 6309,
+      "FLOOD": 3393,
+      "BRUTEFORCE": 2501,
+      "BENIGN": 2207
+    },
+    "known_units": [
+      "BOTNET",
+      "FLOOD",
+      "INFILTRATION",
+      "WEB"
+    ],
+    "pseudo_unknown_units": [
+      "BOTNET",
+      "FLOOD",
+      "INFILTRATION",
+      "WEB"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "splits": "splits/family_seed1",
+  "only": [
+    "P1__nf_bot",
+    "P3__"
+  ],
+  "model": "secbert",
+  "scheme": "sentence",
+  "max_length": 512,
+  "epochs": 2,
+  "batch_size": 32,
+  "lr": 5e-05,
+  "max_train_per_unit": 2000,
+  "max_test_per_unit": 0,
+  "far": [
+    0.01,
+    0.05
+  ],
+  "warmup_n": 2000,
+  "contamination": [
+    0.0
+  ],
+  "seed": 1,
+  "discretize": 0,
+  "nan_token": true,
+  "out": "results/revision/l1_secbert-nan_family_seed1.csv"
+}

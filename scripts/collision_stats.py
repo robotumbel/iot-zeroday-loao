@@ -25,7 +25,9 @@ sys.path.insert(0, str(ROOT))
 from loao.data import feature_columns  # noqa: E402
 
 DATA = {"NF-ToN-IoT-v3": ("nf_ton_iot_v3", "data/raw/NF-ToN-IoT-v3/NF-ToN-IoT-v3.csv"),
-        "NF-BoT-IoT-v3": ("nf_bot_iot_v3", "data/raw/NF-BoT-IoT-v3/NF-BoT-IoT-v3.csv")}
+        "NF-BoT-IoT-v3": ("nf_bot_iot_v3", "data/raw/NF-BoT-IoT-v3/NF-BoT-IoT-v3.csv"),
+        "NF-UNSW-NB15-v3": ("nf_unsw_nb15_v3", "data/raw/NF-UNSW-NB15-v3/NF-UNSW-NB15-v3.csv"),
+        "NF-CICIDS2018-v3": ("nf_cicids2018_v3", "data/raw/NF-CICIDS2018-v3/NF-CICIDS2018-v3.csv")}
 
 
 def full_file(name: str, cfg: dict, path: Path) -> list[str]:
@@ -87,16 +89,24 @@ def near_duplicates(processed: Path) -> list[str]:
 
 
 def main() -> None:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--datasets", nargs="+", default=list(DATA))
+    ap.add_argument("--out", default="results/collision_stats.md")
+    a = ap.parse_args()
     cfgs = json.loads((ROOT / "configs/datasets.json").read_text(encoding="utf-8"))
     parts = ["# Label collisions and near duplicates\n", "## Full files\n"]
     for name, (key, rel) in DATA.items():
+        if name not in a.datasets:
+            continue
         parts += full_file(name, cfgs[key], ROOT / rel)
         print("\n".join(parts[-6:]), flush=True)
     parts.append("\n## Near duplicates (seed 0)\n")
-    for key in ("nf_ton_iot_v3", "nf_bot_iot_v3"):
-        parts += near_duplicates(ROOT / f"data/processed/{key}__cap20000__seed0.parquet")
+    for name, (key, _) in DATA.items():
+        if name in a.datasets:
+            parts += near_duplicates(ROOT / f"data/processed/{key}__cap20000__seed0.parquet")
     text = "\n".join(parts) + "\n"
-    (ROOT / "results/collision_stats.md").write_text(text, encoding="utf-8")
+    (ROOT / a.out).write_text(text, encoding="utf-8")
     print(text)
 
 
